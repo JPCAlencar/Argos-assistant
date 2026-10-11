@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark"><title>ARGOS · Control</title>
+  <link rel="icon" href="/static/assets/argos.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <main id="login-view" class="login-shell" hidden>
+    <div class="login-card">
+      <img src="/static/assets/argos.svg" width="66" height="66" alt="">
+      <p class="eyebrow">SEU ASSISTENTE. SEU CONTROLE.</p><h1>Bem-vindo ao ARGOS</h1>
+      <p class="muted">Entre para conversar, executar rotinas e acompanhar cada ação.</p>
+      <form id="login-form">
+        <label>Usuário<input name="username" autocomplete="username" required maxlength="80" value="admin"></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required maxlength="256"></label>
+        <button type="submit" class="primary">Entrar no painel <span aria-hidden="true">→</span></button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+      <p class="small muted">Primeiro acesso: crie o administrador com <code>python -m app.cli create-admin</code>.
+      Se a instalação gerou uma senha, consulte <code>.runtime/first-access.txt</code>.</p>
+      <span class="version">ARGOS CONTROL / v{{ version }}</span>
+    </div>
+  </main>
+  <div id="shell" class="shell" hidden>
+    <aside id="sidebar" class="sidebar">
+      <a class="brand" href="#dashboard"><img src="/static/assets/argos.svg" alt="" width="34" height="34"><span>ARGOS<small>CONTROL CENTER</small></span></a>
+      <p class="nav-caption">WORKSPACE</p>
+      <nav aria-label="Navegação principal">
+        <a href="#dashboard" data-page="dashboard" data-icon="grid">Dashboard</a>
+        <a href="#chat" data-page="chat" data-icon="chat">Conversar</a>
+        <a href="#workflows" data-page="workflows" data-icon="flow">Automações</a>
+        <a href="#tasks" data-page="tasks" data-icon="clock">Histórico</a>
+      </nav>
+      <p class="nav-caption">ADMINISTRAÇÃO</p>
+      <nav aria-label="Administração">
+        <a href="#provider" data-page="provider" data-icon="spark">Modelos</a>
+        <a href="#tools" data-page="tools" data-icon="tool">Ferramentas</a>
+        <a href="#devices" data-page="devices" data-icon="monitor">Dispositivos</a>
+        <a href="#memory" data-page="memory" data-icon="layers">Memória</a>
+        <a href="#security" data-page="security" data-icon="shield">Segurança</a>
+        <a href="#settings" data-page="settings" data-icon="settings">Configurações</a>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Núcleo local <small>v{{ version }}</small></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <button id="menu-button" class="icon-button" aria-label="Abrir navegação" aria-expanded="false">☰</button>
+        <span class="breadcrumb">Workspace <span>/</span> <strong id="page-name">Dashboard</strong></span>
+        <div class="topbar-right"><span class="local-label">LOCAL · PRIVADO</span><button id="logout" class="quiet">Sair ↗</button></div>
+      </header>
+      <main id="content" class="content" aria-live="polite"><p class="muted">Carregando…</p></main>
+      <footer>ARGOS v{{ version }} <span>Inteligência com autonomia. Ações com controle.</span></footer>
+    </div>
+  </div>
+  <dialog id="detail-dialog"><div class="dialog-heading"><h2>Detalhes da tarefa</h2><button id="close-dialog" class="icon-button" aria-label="Fechar">✕</button></div><div id="detail-content"></div></dialog>
+</body>
+</html>
